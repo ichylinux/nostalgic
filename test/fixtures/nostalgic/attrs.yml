@@ -1,0 +1,21 @@
+1:
+  id: 1
+  type: User
+  model_id: 1
+  name: tel
+  value: '111-123-4567'
+  effective_at: <%= Date.today - 1.month %>
+2:
+  id: 2
+  type: User
+  model_id: 1
+  name: tel
+  value: '222-123-4567'
+  effective_at: <%= Date.today %>
+3:
+  id: 3
+  type: User
+  model_id: 1
+  name: tel
+  value: '333-123-4567'
+  effective_at: <%= Date.today + 1.second %>
