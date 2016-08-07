@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20160807103323) do
 
   create_table "nostalgic_attrs", force: :cascade do |t|
-    t.string   "type",         null: false
+    t.string   "model_type",   null: false
     t.integer  "model_id",     null: false
     t.string   "name",         null: false
     t.string   "value"
-    t.datetime "effective_at", null: false
+    t.date     "effective_at", null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

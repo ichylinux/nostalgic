@@ -1,11 +1,11 @@
 class CreateNostalgicAttrs < ActiveRecord::Migration
   def change
     create_table :nostalgic_attrs do |t|
-      t.string :type, null: false
+      t.string :model_type, null: false
       t.integer :model_id, null: false
       t.string :name, null: false
       t.string :value
-      t.datetime :effective_at, null: false
+      t.date :effective_at, null: false
       t.timestamps null: false
     end
   end
