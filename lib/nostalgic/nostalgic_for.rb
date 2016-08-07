@@ -30,7 +30,12 @@ module Nostalgic
           next if self.nostalgic_attrs.include?(attr.to_sym)
           self.nostalgic_attrs << attr.to_sym
 
+          model_name = self.model_name.to_s
+
           class_eval <<-METHODS, __FILE__, __LINE__ + 1
+            has_many :#{attr.to_s.pluralize}, -> {where(:model_type => model_name, :name => '#{attr}')}, :class_name => 'Nostalgic::Attr', :foreign_key => 'model_id'
+            accepts_nested_attributes_for :#{attr.to_s.pluralize}, :allow_destroy => true
+
             attr_accessor :#{attr}_effective_at
 
             def #{attr}_on(datetime)

@@ -35,4 +35,10 @@ class UserTest < ActiveSupport::TestCase
     assert_equal '333-123-4567', @user.tel_at(today + 1.day)
     assert_equal '555-123-4567', @user.tel_at(today + 2.day)
   end
+
+  def test_tels
+    assert @user = User.first
+    assert @user.respond_to?(:tels)
+    assert_equal 3, @user.tels.size
+  end
 end
