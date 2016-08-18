@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807103323) do
+ActiveRecord::Schema.define(version: 20160816080822) do
 
   create_table "nostalgic_attrs", force: :cascade do |t|
     t.string   "model_type",   null: false
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20160807103323) do
     t.string   "name",         null: false
     t.string   "value"
     t.date     "effective_at", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
