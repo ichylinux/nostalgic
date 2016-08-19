@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    nostalgic (0.1.2)
+    nostalgic (0.1.3)
       rails (~> 4.2.7, < 5.0.0)
 
 GEM
