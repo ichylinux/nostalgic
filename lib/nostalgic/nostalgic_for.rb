@@ -3,10 +3,21 @@ module Nostalgic
     extend ActiveSupport::Concern
 
     included do
+      after_find :load_current_value
       after_save :save_nostalgic_attrs!
     end
 
     private
+
+    def load_current_value
+      Array(self.class.nostalgic_attrs).each do |attr|
+        current = self.__send__(attr.to_s.pluralize).where('effective_at <= ?', Date.today).first
+        if current
+          self.__send__("#{attr}=", current.value)
+          self.__send__("#{attr}_effective_at=", current.effective_at)
+        end
+      end
+    end
 
     def save_nostalgic_attrs!
       Array(self.class.nostalgic_attrs).each do |attr|
