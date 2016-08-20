@@ -7,4 +7,16 @@ table.nostalgic {
     margin: 0;
     padding: 0;
   }
+
+  img {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 2px;
+  }
+
+  a:hover {
+    background: none;
+  }
 }
+
