@@ -15,6 +15,10 @@ module Nostalgic
         if current
           self.__send__("#{attr}=", current.value)
           self.__send__("#{attr}_effective_at=", current.effective_at)
+        else
+          if self.respond_to?(:created_at) and self.created_at.present?
+            self.__send__("#{attr}_effective_at=", self.created_at.to_date)
+          end
         end
       end
     end
