@@ -4,7 +4,7 @@ module Nostalgic
   class AttrTest < ActiveSupport::TestCase
 
     def test_nostalgic_model
-      na = Nostalgic::Attr.new
+      Nostalgic::Attr.new
     end
 
   end

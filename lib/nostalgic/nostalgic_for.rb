@@ -39,10 +39,22 @@ module Nostalgic
       attr_accessor :nostalgic_attrs
 
       def belongs_to(name, scope = nil, options = {})
-        super
-        if options.fetch(:nostalgic, false)
+        scope ||= {}
+        super(name, scope.except(:nostalgic), options)
+
+        if scope.fetch(:nostalgic, false)
           foreign_key = options.fetch(:foreign_key, "#{name}_id")
           nostalgic_for foreign_key
+
+          class_eval <<-METHODS, __FILE__, __LINE__ + 1
+            def #{name}_on(date)
+              return self.#{name} unless date.present?
+
+              '#{name}'.classify.constantize.find_by_id(#{foreign_key}_at(date))
+            end
+
+            alias_method :#{name}_at, :#{name}_on
+          METHODS
         end
       end
 
@@ -62,7 +74,7 @@ module Nostalgic
             attr_accessor :#{attr}_effective_at
 
             def #{attr}_on(date)
-              raise ArgumentError.new if date.nil?
+              return self.#{attr} unless date.present?
 
               na = Nostalgic::Attr.where(:model_type => self.class.name, :model_id => self.id, :name => '#{attr}')
               na = na.where('effective_at <= ?', date).order('effective_at desc').first
@@ -70,7 +82,6 @@ module Nostalgic
             end
 
             alias_method :#{attr}_at, :#{attr}_on
-
           METHODS
         end
       end

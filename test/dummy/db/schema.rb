@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816080822) do
+ActiveRecord::Schema.define(version: 20161217105921) do
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "nostalgic_attrs", force: :cascade do |t|
     t.string   "model_type",   null: false
@@ -28,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160816080822) do
     t.string   "tel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "company_id"
   end
 
 end

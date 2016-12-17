@@ -19,3 +19,10 @@
   name: tel
   value: '333-123-4567'
   effective_at: <%= Date.today + 1.day %>
+4:
+  id: 4
+  model_type: User
+  model_id: 1
+  name: company_id
+  value: 1
+  effective_at: <%= Date.today - 1.day %>
