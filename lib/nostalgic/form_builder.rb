@@ -8,7 +8,7 @@ class ActionView::Helpers::FormBuilder
   end
 
   def nostalgic_collection_select(method, collection, value_method, text_method, options = {}, html_options = {})
-    @template.render 'nostalgic/collction_select',
+    @template.render 'nostalgic/collection_select',
         :f => self, :attr => method, :collection => collection, :value_method => value_method, :text_method => text_method,
         :options => options, :html_options => html_options
   end

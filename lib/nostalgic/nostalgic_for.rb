@@ -38,6 +38,14 @@ module Nostalgic
     module ClassMethods
       attr_accessor :nostalgic_attrs
 
+      def belongs_to(name, scope = nil, options = {})
+        super
+        if options.fetch(:nostalgic, false)
+          foreign_key = options.fetch(:foreign_key, "#{name}_id")
+          nostalgic_for foreign_key
+        end
+      end
+
       def nostalgic_for(*attrs)
         self.nostalgic_attrs ||= []
 
