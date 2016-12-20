@@ -50,7 +50,7 @@ module Nostalgic
             def #{name}_on(date)
               return self.#{name} unless date.present?
 
-              '#{name}'.classify.constantize.find_by_id(#{foreign_key}_at(date))
+              '#{name}'.classify.constantize.find_by_id(#{foreign_key}_on(date))
             end
 
             alias_method :#{name}_at, :#{name}_on
