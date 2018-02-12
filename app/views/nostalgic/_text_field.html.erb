@@ -6,6 +6,8 @@
       </td>
       <td>
         <%= f.text_field "#{attr}_effective_at", :class => 'datepicker', :style => 'display: none;' %>
+      </td>
+      <td>
         <%= image_tag 'nostalgic/list.png', :onclick => 'nostalgic.edit_nostalgic_attr(this); return false;' %>
       </td>
     </tr>
@@ -17,10 +19,12 @@
           <td>
             <%= f.hidden_field :id %>
             <%= f.hidden_field :_destroy %>
-            <%= f.text_field :value, :class => css_class, :disabled => true, :readonly => true %>
+            <%= content_tag(:span, f.object.value, class: css_class) %>
           </td>
           <td>
-            <%= f.text_field :effective_at, :class => 'datepicker', :disabled => true, :readonly => true %>
+            <%= content_tag(:span, f.object.effective_at, class: css_class) %>
+          </td>
+          <td>
             <%= image_tag 'nostalgic/minus.png', :onclick => 'nostalgic.remove_row(this); return false;' %>
           </td>
         </tr>

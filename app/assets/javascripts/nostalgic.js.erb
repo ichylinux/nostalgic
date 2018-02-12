@@ -1,0 +1,37 @@
+var nostalgic = [];
+
+nostalgic.remove_row = function(trigger) {
+  var tr = $(trigger).closest('tr');
+  tr.find('input[name*="\[_destroy\]"]').val(true);
+  tr.hide();
+};
+
+nostalgic.edit_nostalgic_attr = function(trigger) {
+  var table = $(trigger).closest('table');
+  var tbody = table.find('tbody');
+
+  tbody.toggle();
+  if (tbody.is(':visible')) {
+    $(trigger).closest('td').prev().children().show();
+    nostalgic.init_datepicker(table);
+  } else {
+    $(trigger).closest('td').prev().children().hide();
+  }
+};
+
+nostalgic.init_datepicker = function(selector) {
+  $(selector).find('.datepicker').each(function() {
+    $(this).datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeYear: true,
+      changeMonth: true,
+      buttonImage: '<%= image_path('nostalgic/calendar.gif') %>',
+      buttonText: '',
+      buttonImageOnly: true,
+      showOn: 'button',
+      beforeShow: function() {
+        if ($(this).attr('readonly')) { return false; }
+      }
+    });
+  });
+};
