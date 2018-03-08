@@ -1,5 +1,5 @@
 module Nostalgic
-  module NostalgicFor
+  module NostalgicAttr
     extend ActiveSupport::Concern
 
     included do
@@ -44,7 +44,7 @@ module Nostalgic
 
         if scope.fetch(:nostalgic, false)
           foreign_key = options.fetch(:foreign_key, "#{name}_id")
-          nostalgic_for foreign_key
+          nostalgic_attr foreign_key
 
           class_eval <<-METHODS, __FILE__, __LINE__ + 1
             def #{name}_on(date)
@@ -58,7 +58,7 @@ module Nostalgic
         end
       end
 
-      def nostalgic_for(*attrs)
+      def nostalgic_attr(*attrs)
         self.nostalgic_attrs ||= []
 
         attrs.each do |attr|

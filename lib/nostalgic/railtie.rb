@@ -3,8 +3,8 @@ module Nostalgic
 
     initializer 'active_record_extension' do
       ActiveSupport.on_load :active_record do
-        require_relative 'nostalgic_for'
-        include Nostalgic::NostalgicFor
+        require_relative 'nostalgic_attr'
+        include Nostalgic::NostalgicAttr
       end
     end
 

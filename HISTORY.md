@@ -1,3 +1,7 @@
+## 0.5.0
+* breaking change: rename method name nostalgic_for to nostalgic_attr
+
+
 ## 0.4.1
 * bug fix
 
