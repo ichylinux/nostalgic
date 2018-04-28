@@ -24,10 +24,10 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
   s.required_ruby_version = '>= 2.2.0'
 
-  s.add_dependency "rails", '>= 4.2', '< 5.2'
+  s.add_dependency "rails", '>= 4.2', '< 6'
 
   s.add_development_dependency 'bundler', '~> 1.16'
-  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake', '~> 12.0'
-  s.add_development_dependency 'sqlite3', '~> 1.3'
+  s.add_development_dependency 'sqlite3'
 end
