@@ -5,6 +5,8 @@ rvm:
   - 2.5.1
   - 2.4.4
   - 2.3.7
+before_script:
+  - bin/rails db:schema:load
 script:
-  - bundle exec rails test
+  - bin/rails test
 
