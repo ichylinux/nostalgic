@@ -35,41 +35,23 @@ module Nostalgic
       end
     end
 
-    module ClassMethods
-      attr_accessor :nostalgic_attrs
+    class_methods do
 
-      def belongs_to(name, scope = nil, options = {})
-        scope ||= {}
-        super(name, scope.except(:nostalgic), options)
-
-        if scope.fetch(:nostalgic, false)
-          foreign_key = options.fetch(:foreign_key, "#{name}_id")
-          nostalgic_attr foreign_key
-
-          class_eval <<-METHODS, __FILE__, __LINE__ + 1
-            def #{name}_on(date)
-              return self.#{name} unless date.present?
-
-              '#{name}'.classify.constantize.find_by_id(#{foreign_key}_on(date))
-            end
-
-            alias_method :#{name}_at, :#{name}_on
-          METHODS
-        end
+      def nostalgic_attrs
+        @@_nostalgic_attrs ||= {}
+        @@_nostalgic_attrs[self] ||= []
       end
 
       def nostalgic_attr(*attrs)
-        self.nostalgic_attrs ||= []
-
         attrs.each do |attr|
-          next if self.nostalgic_attrs.include?(attr.to_sym)
-          self.nostalgic_attrs << attr.to_sym
 
           model_type = self.model_name.to_s
 
           class_eval <<-METHODS, __FILE__, __LINE__ + 1
-            has_many :#{attr.to_s.pluralize}, -> {where(:model_type => model_type, :name => '#{attr}').order('effective_at desc')}, :class_name => 'Nostalgic::Attr', :foreign_key => 'model_id'
-            accepts_nested_attributes_for :#{attr.to_s.pluralize}, :allow_destroy => true
+            nostalgic_attrs << attr.to_sym unless nostalgic_attrs.include?(attr.to_sym)
+
+            has_many :#{attr.to_s.pluralize}, -> {where(model_type: model_type, name: '#{attr}').order('effective_at desc')}, class_name: 'Nostalgic::Attr', foreign_key: 'model_id'
+            accepts_nested_attributes_for :#{attr.to_s.pluralize}, allow_destroy: true
 
             attr_accessor :#{attr}_effective_at
 
@@ -86,6 +68,46 @@ module Nostalgic
         end
       end
 
+      if Rails::VERSION::MAJOR == 5 and Rails::VERSION::MINOR >= 2
+        def belongs_to(name, scope = nil, **options)
+          super(name, scope, options.except(:nostalgic))
+  
+          if options.fetch(:nostalgic, false)
+            foreign_key = options.fetch(:foreign_key, "#{name}_id")
+            nostalgic_attr foreign_key
+  
+            class_eval <<-METHODS, __FILE__, __LINE__ + 1
+              def #{name}_on(date)
+                return self.#{name} unless date.present?
+  
+                '#{name}'.classify.constantize.find_by_id(#{foreign_key}_on(date))
+              end
+  
+              alias_method :#{name}_at, :#{name}_on
+            METHODS
+          end
+        end
+      else
+        def belongs_to(name, scope = nil, options = {})
+          scope ||= {}
+          super(name, scope.except(:nostalgic), options)
+    
+          if scope.fetch(:nostalgic, false)
+            foreign_key = options.fetch(:foreign_key, "#{name}_id")
+            nostalgic_attr foreign_key
+    
+            class_eval <<-METHODS, __FILE__, __LINE__ + 1
+              def #{name}_on(date)
+                return self.#{name} unless date.present?
+    
+                '#{name}'.classify.constantize.find_by_id(#{foreign_key}_on(date))
+              end
+    
+              alias_method :#{name}_at, :#{name}_on
+            METHODS
+          end
+        end
+      end
     end
   end
 end
