@@ -58,7 +58,7 @@ module Nostalgic
             def #{attr}_on(date)
               return self.#{attr} unless date.present?
 
-              na = Nostalgic::Attr.where(:model_type => self.class.name, :model_id => self.id, :name => '#{attr}')
+              na = Nostalgic::Attr.where(model_type: self.class.name, model_id: self.id, name: '#{attr}')
               na = na.where('effective_at <= ?', date).order('effective_at desc').first
               na ? na.value : self.#{attr}
             end
