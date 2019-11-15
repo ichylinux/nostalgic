@@ -1,3 +1,6 @@
+## master
+* drop support for ruby-2.3
+
 ## 0.5.1
 * drop support for ruby-2.2
 * add suport for rails-5.2
