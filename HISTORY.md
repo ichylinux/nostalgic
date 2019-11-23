@@ -1,5 +1,5 @@
 ## master
-* drop support for ruby-2.3
+* drop support for ruby-2.3, ruby-2.4
 
 ## 0.5.1
 * drop support for ruby-2.2

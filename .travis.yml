@@ -4,7 +4,6 @@ cache: bundler
 rvm:
   - 2.6.3
   - 2.5.5
-  - 2.4.3
 script:
   - bin/rails db:schema:load
   - bin/rails test
