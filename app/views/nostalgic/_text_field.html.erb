@@ -5,10 +5,10 @@
         <%= f.text_field attr, :class => css_class %>
       </td>
       <td>
-        <%= f.text_field "#{attr}_effective_at", :class => 'datepicker', :style => 'display: none;' %>
+        <%= f.text_field "#{attr}_effective_at", class: 'datepicker', style: 'display: none;' %>
       </td>
       <td>
-        <%= image_tag 'nostalgic/list.png', :onclick => 'nostalgic.edit_nostalgic_attr(this); return false;' %>
+        <%= image_tag 'nostalgic/list.png', onclick: 'nostalgic.edit_nostalgic_attr(this); return false;' %>
       </td>
     </tr>
   </thead>
