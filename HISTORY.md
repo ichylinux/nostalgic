@@ -1,5 +1,6 @@
-## master
+## 0.5.2
 * drop support for ruby-2.3, ruby-2.4
+* nostalgic_collection_select was able to edit history record
 
 ## 0.5.1
 * drop support for ruby-2.2
