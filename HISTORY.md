@@ -1,3 +1,8 @@
+## 0.6.0
+* drop support for ruby-2.5, ruby-2.6
+* drop suport for rails-4.2, rails-5.0, rails-5.1
+* add suport for rails-6
+
 ## 0.5.2
 * drop support for ruby-2.3, ruby-2.4
 * nostalgic_collection_select was able to edit history record
