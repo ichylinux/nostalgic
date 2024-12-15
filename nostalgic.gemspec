@@ -1,9 +1,7 @@
-$:.push File.expand_path("lib", __dir__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'nostalgic/version'
 
-# Maintain your gem's version:
-require "nostalgic/version"
-
-# Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = "nostalgic"
   s.version     = Nostalgic::VERSION
@@ -18,10 +16,9 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.7.0'
 
-  s.add_dependency 'rails', '>= 5.2', '< 7'
+  s.add_dependency 'rails', '>= 5.2'
 
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'minitest'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency 'bundler', '~> 2.0'
+  s.add_development_dependency 'minitest', '~> 5.25'
+  s.add_development_dependency 'rake', '~> 12.0'
 end
