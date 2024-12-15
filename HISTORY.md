@@ -1,3 +1,6 @@
+## 0.6.2
+* add images to manifest.js for asset precompile
+
 ## 0.6.1
 * now supports ruby-2.7 and higher
 * now suports rails-5.2 and higher
