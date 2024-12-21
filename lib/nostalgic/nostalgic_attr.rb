@@ -28,8 +28,8 @@ module Nostalgic
         effective_at = self.__send__("#{attr}_effective_at")
         next unless effective_at.present?
 
-        na = Nostalgic::Attr.where(:model_type => self.class.name, :model_id => self.id, :name => attr, :effective_at => effective_at).first
-        na ||= Nostalgic::Attr.new(:model_type => self.class.name, :model_id => self.id, :name => attr, :effective_at => effective_at)
+        na = Nostalgic::Attr.where(model_type: self.class.name, model_id: self.id, name: attr, effective_at: effective_at).first
+        na ||= Nostalgic::Attr.new(model_type: self.class.name, model_id: self.id, name: attr, effective_at: effective_at)
         na.value = self.__send__(attr)
         na.save!
       end
