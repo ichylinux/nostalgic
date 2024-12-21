@@ -1,4 +1,4 @@
-## 0.6.2
+## 0.6.3
 * add images to manifest.js for asset precompile
 
 ## 0.6.1
