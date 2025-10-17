@@ -1,3 +1,6 @@
+## 0.6.5
+* include nostalgic_manifest.js to asset precomiple
+
 ## 0.6.4
 * add images to manifest.js for asset precompile
 

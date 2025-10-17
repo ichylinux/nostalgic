@@ -13,3 +13,7 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+gem 'nokogiri', force_ruby_platform: true
+gem 'sprockets-rails'
+gem 'sqlite3', force_ruby_platform: true
