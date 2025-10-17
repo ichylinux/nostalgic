@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'nostalgic'
+gem "nostalgic"
 ```
 
 And then execute:

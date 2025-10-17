@@ -1,7 +1,7 @@
-require 'test_helper'
+require "test_helper"
 
-class Nostalgic::Test < ActiveSupport::TestCase
-  test "truth" do
-    assert_kind_of Module, Nostalgic
+class NostalgicTest < ActiveSupport::TestCase
+  test "it has a version number" do
+    assert Nostalgic::VERSION
   end
 end

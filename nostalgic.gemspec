@@ -1,24 +1,22 @@
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'nostalgic/version'
+require_relative "lib/nostalgic/version"
 
-Gem::Specification.new do |s|
-  s.name        = "nostalgic"
-  s.version     = Nostalgic::VERSION
-  s.authors     = ["ichy"]
-  s.email       = ["ichylinux@gmail.com"]
-  s.homepage    = "https://github.com/ichylinux/nostalgic"
-  s.summary     = %q{column versioning utility}
-  s.description = %q{column versioning utility}
-  s.license     = "MIT"
+Gem::Specification.new do |spec|
+  spec.name        = "nostalgic"
+  spec.version     = Nostalgic::VERSION
+  spec.authors     = [ "ichy" ]
+  spec.email       = [ "ichylinux@gmail.com" ]
+  spec.homepage    = "https://github.com/ichylinux/nostalgic"
+  spec.summary     = "column versioning utility"
+  spec.description = "column versioning utility"
+  spec.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "https://github.com/ichylinux/nostalgic/blob/master/HISTORY.md"
 
-  s.required_ruby_version = '>= 2.7.0'
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  end
 
-  s.add_dependency 'rails', '>= 5.2'
-
-  s.add_development_dependency 'bundler', '~> 2.0'
-  s.add_development_dependency 'minitest', '~> 5.25'
-  s.add_development_dependency 'rake', '~> 12.0'
+  spec.add_dependency "rails", ">= 6.0"
 end

@@ -1,3 +1,6 @@
+## 0.7.0
+* now suports rails-6.0 and higher
+
 ## 0.6.5
 * include nostalgic_manifest.js to asset precomiple
 
