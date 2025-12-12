@@ -14,7 +14,7 @@
   </thead>
   <tbody style="display: none;">
     <% f.object.public_send(attr.to_s.pluralize).each_with_index do |nostalgic_attr, i| %>
-      <%= f.fields_for "#{attr.to_s.pluralize}_attributes][#{i}]", nostalgic_attr do |f| %>
+      <%= f.fields_for attr.to_s.pluralize, nostalgic_attr, child_index: i do |f| %>
         <tr>
           <td>
             <%= f.hidden_field :id %>
