@@ -1,3 +1,7 @@
+## 0.8.0
+* now suports rails-7.0 and higher
+* drop suport for ruby-2.7
+
 ## 0.7.0
 * now suports rails-6.0 and higher
 
